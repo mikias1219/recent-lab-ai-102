@@ -1,0 +1,18 @@
+# Ignore local backups created by the workspace cleanup step
+_backup_*/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+
+# Python cache (some labs use Python)
+__pycache__/
+*.pyc
+*.pyo
+
+# Node cache (some labs may use Node tooling)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
