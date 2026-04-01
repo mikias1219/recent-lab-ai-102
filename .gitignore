@@ -10,6 +10,19 @@ __pycache__/
 *.pyc
 *.pyo
 
+# Python virtual environments
+.venv/
+venv/
+ENV/
+
+# Environment variable files (do not commit secrets)
+.env
+**/.env
+.env.*
+**/.env.*
+!.env.example
+!**/.env.example
+
 # Node cache (some labs may use Node tooling)
 node_modules/
 npm-debug.log*

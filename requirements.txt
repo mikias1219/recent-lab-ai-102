@@ -1,0 +1,43 @@
+#
+# Common Python dependencies for the MicrosoftLearning AI-102 labs in this workspace.
+# Install from the workspace root:
+#   pip install -r requirements.txt
+#
+# Notes:
+# - Some labs pin exact versions; we preserve those pins here.
+# - This file is intentionally broad so you can reuse one environment across labs.
+#
+
+# Env loading (some labs use `dotenv`, others `python-dotenv`)
+python-dotenv
+dotenv
+
+# Shared Azure SDK basics
+azure-core
+azure-identity
+requests
+
+# Azure AI Document Intelligence (formerly Form Recognizer)
+azure-ai-formrecognizer==3.3.3
+
+# Azure AI Language
+azure-ai-textanalytics==5.3.0
+azure-ai-translation-text==1.0.1
+
+# Azure Speech
+azure-cognitiveservices-speech==1.48.2
+
+# Azure AI Foundry / Projects (some newer labs)
+azure-ai-projects==2.0.0b4
+
+# OpenAI / Azure OpenAI labs
+openai
+
+# Common utilities used by vision labs
+pillow
+matplotlib
+python-dateutil
+
+# Azure Functions (custom skill lab)
+azure-functions
+
