@@ -1,13 +1,26 @@
+import os
+from pathlib import Path
+
 from azure.core.credentials import AzureKeyCredential
 from azure.ai.formrecognizer import DocumentAnalysisClient
 from dotenv import load_dotenv
-import os
 
-# Get configuration settings 
+_root_env = Path(__file__).resolve().parents[4] / ".env"
+if _root_env.is_file():
+    load_dotenv(_root_env)
 load_dotenv()
-endpoint = os.getenv("DOC_INTELLIGENCE_ENDPOINT")
-key = os.getenv("DOC_INTELLIGENCE_KEY")
+
+endpoint = os.getenv("DOCUMENT_INTELLIGENCE_ENDPOINT") or os.getenv(
+    "DOC_INTELLIGENCE_ENDPOINT"
+)
+key = os.getenv("DOCUMENT_INTELLIGENCE_KEY") or os.getenv("DOC_INTELLIGENCE_KEY")
 model_id = os.getenv("MODEL_ID")
+
+if not endpoint or not key or not model_id:
+    raise SystemExit(
+        "Set DOCUMENT_INTELLIGENCE_ENDPOINT, DOCUMENT_INTELLIGENCE_KEY, and MODEL_ID "
+        "(your trained custom model id from Document Intelligence Studio)."
+    )
 
 formUrl = "https://github.com/MicrosoftLearning/mslearn-ai-document-intelligence/blob/main/Labfiles/02-custom-document-intelligence/test1.jpg?raw=true"
 
