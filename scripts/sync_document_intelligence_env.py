@@ -24,18 +24,38 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
+import shutil
 import subprocess
 import sys
 from pathlib import Path
 
 
+def _az_executable() -> str:
+    """Resolve `az` when PATH is minimal (e.g. some IDE terminals)."""
+    w = shutil.which("az")
+    if w:
+        return w
+    for candidate in (
+        r"C:\Program Files\Microsoft SDKs\Azure\CLI2\wbin\az.cmd",
+        r"C:\Program Files (x86)\Microsoft SDKs\Azure\CLI2\wbin\az.cmd",
+    ):
+        if os.path.isfile(candidate):
+            return candidate
+    raise SystemExit(
+        "Azure CLI (az) not found. Install: https://learn.microsoft.com/cli/azure/install-azure-cli"
+    )
+
+
 def _run_az(args: list[str]) -> subprocess.CompletedProcess[str]:
+    az = _az_executable()
     return subprocess.run(
-        ["az", *args],
+        [az, *args],
         capture_output=True,
         text=True,
         encoding="utf-8",
         errors="replace",
+        shell=False,
     )
 
 
