@@ -5,7 +5,8 @@ rem Set variable values
 set subscription_id=YOUR_SUBSCRIPTION_ID
 set resource_group=YOUR_RESOURCE_GROUP
 set location=YOUR_LOCATION_NAME
-set expiry_date=2026-01-01T00:00:00Z
+rem Use a future expiry so SAS is valid when you train (regenerate if needed)
+set expiry_date=2027-12-31T23:59:59Z
 
 rem Get random numbers to create unique resource names
 set unique_id=!random!!random!
